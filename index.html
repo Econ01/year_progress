@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Year Progress Tracker</title>
+    <title>Enhanced Year Progress Tracker</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -24,29 +25,37 @@
             <div class="percentage-label">OF THE YEAR COMPLETED</div>
             
             <div id="days-count">
-                <span class="days-highlight">0 days</span> passed • 
-                <span class="days-highlight">0 days</span> remaining
+                <div><span class="days-highlight">0 days</span> passed</div>
+                <div><span class="days-highlight">0 days</span> remaining</div>
             </div>
         </div>
         
         <div class="date-container">
             <div class="date-box">
-                <div class="date-title">Current Date</div>
+                <div class="date-title"><i class="fas fa-calendar-alt"></i> Current Date</div>
                 <div class="date-value" id="current-date">Loading...</div>
             </div>
             <div class="date-box">
-                <div class="date-title">Current Time</div>
+                <div class="date-title"><i class="fas fa-clock"></i> Current Time</div>
                 <div class="date-value" id="current-time">Loading...</div>
             </div>
             <div class="date-box">
-                <div class="date-title">Timezone</div>
+                <div class="date-title"><i class="fas fa-globe-americas"></i> Timezone</div>
                 <div class="date-value" id="timezone">Loading...</div>
             </div>
         </div>
         
-        <div class="footer" id="date-time">As of: Loading date...</div>
+        <div class="footer">
+            <div id="date-time">As of: Loading date...</div>
+        </div>
     </div>
 
+    <div class="milestone-notification" id="milestone-notification">
+        <i class="fas fa-medal"></i>
+        <div>Milestone Reached: <span id="milestone-text"></span></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

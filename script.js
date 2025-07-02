@@ -1,3 +1,71 @@
+// Confetti effect for milestones
+function triggerConfetti() {
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+    
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+        
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+        
+        const particleCount = 50 * (timeLeft / duration);
+        
+        // Front confetti
+        confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+        });
+        
+        // Back confetti
+        confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+        });
+    }, 250);
+}
+
+// Milestone notification
+function showMilestone(message) {
+    const notification = document.getElementById('milestone-notification');
+    const milestoneText = document.getElementById('milestone-text');
+    
+    milestoneText.textContent = message;
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+
+// Share progress function
+function shareProgress() {
+    const percentage = document.getElementById('percentage').textContent;
+    const year = new Date().getFullYear();
+    const text = `Check out the year progress! We're ${percentage} through ${year}.\n`;
+    const url = window.location.href;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'Year Progress',
+            text: text,
+            url: url
+        }).catch(console.error);
+    } else {
+        navigator.clipboard.writeText(text + url);
+        showMilestone('Link copied to clipboard!');
+    }
+}
+
+// Main progress update function
 function updateProgress() {
     // Get current date
     const now = new Date();
@@ -17,6 +85,7 @@ function updateProgress() {
     
     // Calculate progress percentage
     const percentage = ((dayOfYear / totalDays) * 100).toFixed(4);
+    const percentageNum = parseFloat(percentage);
     
     // Update DOM elements
     document.getElementById('year-display').textContent = `${year} Progress`;
@@ -35,13 +104,20 @@ function updateProgress() {
             if (Math.abs(targetPerc - currentPerc) < 0.01) {
                 clearInterval(counter);
                 percElement.textContent = `${targetPerc.toFixed(4)}%`;
+                
+                // Check for milestones
+                const milestones = [25, 50, 75, 90, 99];
+                if (milestones.includes(Math.floor(percentageNum))) {
+                    triggerConfetti();
+                    showMilestone(`${Math.floor(percentageNum)}% of the year!`);
+                }
             }
         }, 50);
     }
 
     document.getElementById('days-count').innerHTML = 
-        `<span class="days-highlight">${dayOfYear} days</span> passed • 
-         <span class="days-highlight">${totalDays - dayOfYear} days</span> remaining`;
+        `<div><span class="days-highlight">${dayOfYear} days</span> passed</div>
+         <div><span class="days-highlight">${totalDays - dayOfYear} days</span> remaining</div>`;
     
     // Update date/time
     const options = { 
