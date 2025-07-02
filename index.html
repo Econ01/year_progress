@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year Progress Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Year Progress Tracker</h1>
+        <div class="year-display" id="year-display">2023 Progress</div>
+        
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        
+        <div class="stats">
+            <div id="percentage">0%</div>
+            <div id="days-count">0 days passed • 0 days remaining</div>
+        </div>
+        
+        <div class="time-visualization">
+            <div class="passed-time"></div>
+            <div class="current-marker"></div>
+            <div class="remaining-time"></div>
+        </div>
+        
+        <div class="date-container">
+            <div class="date-box">
+                <div class="date-title">Current Date</div>
+                <div class="date-value" id="current-date">Loading...</div>
+            </div>
+            <div class="date-box">
+                <div class="date-title">Current Time</div>
+                <div class="date-value" id="current-time">Loading...</div>
+            </div>
+            <div class="date-box">
+                <div class="date-title">Timezone</div>
+                <div class="date-value" id="timezone">Loading...</div>
+            </div>
+        </div>
+        
+        <div class="footer" id="date-time">As of: Loading date...</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
