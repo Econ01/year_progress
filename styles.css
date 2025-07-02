@@ -26,8 +26,8 @@ body {
 }
 
 .container {
-    width: 100%;
-    max-width: 900px;
+    width: 90%;
+    overflow: auto;
     text-align: center;
     background: rgba(0, 0, 0, 0.7);
     padding: 40px;
@@ -49,14 +49,6 @@ body {
     background-clip: text;
     color: transparent;
     letter-spacing: -0.5px;
-}
-
-.subtitle {
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: #ddd;
-    margin-bottom: 40px;
-    letter-spacing: 1px;
 }
 
 .year-display {
@@ -166,11 +158,6 @@ body {
     width: 240px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.date-box:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.12);
 }
 
 .date-title {
