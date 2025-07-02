@@ -8,22 +8,26 @@
 </head>
 <body>
     <div class="container">
-        <h1>Year Progress Tracker</h1>
+        <div class="header">
+            <h1 class="title">Year Progress Tracker</h1>
+            <div class="subtitle">Visualizing the passage of time</div>
+        </div>
+        
         <div class="year-display" id="year-display">2023 Progress</div>
         
         <div class="progress-container">
             <div id="progress-bar"></div>
+            <div class="progress-percentage" id="progress-percentage">0%</div>
         </div>
         
         <div class="stats">
             <div id="percentage">0%</div>
-            <div id="days-count">0 days passed • 0 days remaining</div>
-        </div>
-        
-        <div class="time-visualization">
-            <div class="passed-time"></div>
-            <div class="current-marker"></div>
-            <div class="remaining-time"></div>
+            <div class="percentage-label">OF THE YEAR COMPLETED</div>
+            
+            <div id="days-count">
+                <span class="days-highlight">0 days</span> passed • 
+                <span class="days-highlight">0 days</span> remaining
+            </div>
         </div>
         
         <div class="date-container">
@@ -42,6 +46,7 @@
         </div>
         
         <div class="footer" id="date-time">As of: Loading date...</div>
+        <div class="info-note">* Progress updates in real-time with second precision</div>
     </div>
 
     <script src="script.js"></script>

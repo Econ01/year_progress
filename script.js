@@ -21,6 +21,7 @@ function updateProgress() {
     // Update DOM elements
     document.getElementById('year-display').textContent = `${year} Progress`;
     document.getElementById('progress-bar').style.width = `${percentage}%`;
+    document.getElementById('progress-percentage').textContent = `${percentage}%`;
 
     const percElement = document.getElementById('percentage');
     let currentPerc = parseFloat(percElement.textContent);
@@ -38,8 +39,9 @@ function updateProgress() {
         }, 50);
     }
 
-    document.getElementById('days-count').textContent = 
-        `${dayOfYear} days passed • ${totalDays - dayOfYear} days remaining`;
+    document.getElementById('days-count').innerHTML = 
+        `<span class="days-highlight">${dayOfYear} days</span> passed • 
+         <span class="days-highlight">${totalDays - dayOfYear} days</span> remaining`;
     
     // Update date/time
     const options = { 
@@ -74,17 +76,6 @@ function updateProgress() {
     
     document.getElementById('date-time').textContent = 
         `As of: ${dateStr}`;
-        
-    // Update time visualization
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-    const totalMinutes = hours * 60 + minutes + seconds / 60;
-    
-    document.querySelector('.passed-time').style.flex = 
-        `${(totalMinutes / (24 * 60)) * 100}%`;
-    document.querySelector('.current-marker').style.left = 
-        `${(totalMinutes / (24 * 60)) * 100}%`;
 }
 
 // Update initially
